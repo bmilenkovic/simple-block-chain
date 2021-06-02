@@ -33,6 +33,18 @@ describe('Blockchain', () => {
         bc2.addBlock('foo');
         bc2.chain[1].data = 'Not foo';
         expect(bc.isValidChain(bc2.chain)).toBe(false);
-    }); 
+    });
+
+    it('it replaces the chain with a valid chain', () => {
+        bc2.addBlock('goo');
+        bc.replaceChain(bc2.chain);
+        expect(bc.chain).toEqual(bc2.chain);
+    });
+
+    it('it does not replace the chain wiith one of less than or equal to lenght', () => {
+        bc.addBlock('foo');
+        bc.replaceChain(bc2.chain);
+        expect(bc.chain).not.toEqual(bc2.chain);
+     });
 
 });
