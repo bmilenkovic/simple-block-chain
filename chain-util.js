@@ -1,4 +1,5 @@
 const EC = require('elliptic').ec;
+const SHA256 = require('crypto-js/sha256');
 const ec = new EC('secp256k1');
 const uuidv1 = require('uuid');
 
@@ -13,7 +14,7 @@ class ChainUtil {
     }
 
     static hash(data) {
-        return SHA256(JSON.stringify(data).toString());
+        return SHA256(JSON.stringify(data)).toString();
     }
 }
 
