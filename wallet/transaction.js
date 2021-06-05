@@ -36,6 +36,13 @@ class Transaction {
         }
       }
 
+    static verifyTransaction(transaction) {
+        return ChainUtil.verifySignature(
+            transaction.input.address,
+            transaction.input.signature,
+            ChainUtil.hash(transaction.outputs)
+        );
+    }
 }
 
 module.exports = Transaction;
